@@ -1,0 +1,12 @@
+{
+  "name": "simple_c_escape",
+  "description": "Simple programs to test whether pointers escape in C.",
+  "language": "C",
+  "benchmark_type": "single file",
+  "file_glob": "*.c",
+  "gold_answer_pattern": "{file}.answer.txt",
+  "tags": ["escape"],
+  "output_type": "List[str]",
+  "metric": "prf1",
+  "authors": "Charles Sutton <charlessutton@google.com>"
+}

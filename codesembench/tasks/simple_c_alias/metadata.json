@@ -1,0 +1,12 @@
+{
+  "name": "simple_c_alias",
+  "description": "Simple programs to list the aliases of a variable in C.",
+  "language": "C",
+  "benchmark_type": "single file",
+  "file_glob": "*.c",
+  "gold_answer_pattern": "{file}.answer.txt",
+  "tags": ["alias"],
+  "output_type": "List[str]",
+  "metric": "cluster_prf1",
+  "authors": "Charles Sutton <charlessutton@google.com>"
+}
