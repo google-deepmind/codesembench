@@ -235,10 +235,10 @@ def _parse_type(input_str: str) -> type[Any]:
   type_args_string = match.group(2)
   origin_type = _parse_single_type(origin_type_name)
   if type_args_string:
-    # split is future-profoing. We only handle single-arg types right now.
-    type_args = type_args_string.split(',')
-    sub_types = [_parse_type(arg) for arg in type_args]
-    return origin_type[*sub_types]
+    # It is possible in the future that we would want to handle types
+    # with multiple arguments, like dict. Let's not worry about that
+    # for now.
+    return origin_type[_parse_type(type_args_string)]
   else:
     return origin_type
 

@@ -1,6 +1,7 @@
 // In the following C program, which pointers must alias with each other?
 // Please output the response as a list of lists of pointers which must
 // alias, in Python syntax.
+// This is test alias3.c
 
 struct point { int x; int y };
 

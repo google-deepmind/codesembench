@@ -9,19 +9,9 @@ from typing import Any
 
 from etils import epath
 
-from codesembench.api import evaluation_suite
 from codesembench.api import task_lib
 
 METADATA_FILENAME = 'metadata.json'
-
-
-def load_evaluation_suite(
-    base_path: epath.Path,
-    llm: task_lib.LlmInterface,
-    output_dir: epath.Path,
-) -> evaluation_suite.EvaluationSuite:
-  tasks = load_tasks(base_path)
-  return evaluation_suite.EvaluationSuite(llm, tasks, output_dir)
 
 
 def load_tasks(base_path: epath.Path) -> list[task_lib.Task]:

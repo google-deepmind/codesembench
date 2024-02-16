@@ -3,8 +3,6 @@
 import pytest
 from etils import epath
 from codesembench.api import evaluation_suite
-from codesembench.api import task_lib
-from codesembench.api import task_loader
 from codesembench.api import test_utils
 
 _EXPECTED_OUTPUT = """
@@ -22,13 +20,13 @@ _EXPECTED_OUTPUT = """
 """
 
 
-def test_evaluation_suite_returns_correct_output(self):
-  output_dir = epath.Path(self.create_tempdir())
-  suite = task_loader.load_evaluation_suite(
+def test_evaluation_suite_returns_correct_output(tmpdir):
+  output_dir = epath.Path(tmpdir)
+  suite = evaluation_suite.load_evaluation_suite(
       test_utils.get_tasks_path(),
       test_utils.MockLlm(),
       output_dir,
   )
   suite.run_suite(None)
   output_text = (output_dir / "eval_summary.md").read_text()
-  self.assertEqual(output_text, _EXPECTED_OUTPUT)
+  assert output_text == _EXPECTED_OUTPUT

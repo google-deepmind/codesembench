@@ -17,7 +17,7 @@ import rich.progress
 from codesembench.api import task_lib
 from codesembench.api import task_loader
 
-_TASKS_DIRECTORY = flags.DEFINE_integer(
+_TASKS_DIRECTORY = flags.DEFINE_string(
     'tasks_directory', 'tasks', 'Directory to load the evaluation tasks from.'
 )
 _OUTPUT_DIRECTORY = flags.DEFINE_string(
@@ -130,10 +130,19 @@ class EvaluationSuite:
       json.dump(summary_dict, f)
 
 
+def load_evaluation_suite(
+    base_path: epath.Path,
+    llm: task_lib.LlmInterface,
+    output_dir: epath.Path,
+) -> EvaluationSuite:
+  tasks = task_loader.load_tasks(base_path)
+  return EvaluationSuite(llm, tasks, output_dir)
+
+
 def main(argv: Sequence[str]) -> None:
   if len(argv) > 1:
     raise app.UsageError('Too many command-line arguments.')
-  suite = task_loader.load_evaluation_suite(
+  suite = load_evaluation_suite(
       _TASKS_DIRECTORY.value,
       NullLlm(),
       _OUTPUT_DIRECTORY.value,
